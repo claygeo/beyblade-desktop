@@ -6,12 +6,12 @@ import { AudioManager } from './audio';
 import { ParticleSystem } from './particles';
 
 const BEYBLADE_IMAGES = [
-  '/src/assets/beyblades/beyblade-1.png',
-  '/src/assets/beyblades/beyblade-2.png',
-  '/src/assets/beyblades/beyblade-3.png',
-  '/src/assets/beyblades/beyblade-4.png',
-  '/src/assets/beyblades/beyblade-5.png',
-  '/src/assets/beyblades/beyblade-6.png',
+  '/assets/beyblades/beyblade-1.png',
+  '/assets/beyblades/beyblade-2.png',
+  '/assets/beyblades/beyblade-3.png',
+  '/assets/beyblades/beyblade-4.png',
+  '/assets/beyblades/beyblade-5.png',
+  '/assets/beyblades/beyblade-6.png',
 ];
 
 export class Game {
