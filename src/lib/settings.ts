@@ -2,11 +2,11 @@ export type BattleDuration = 'quick' | 'normal' | 'extended' | 'endless';
 export type BeybladeSize = 'small' | 'normal' | 'large' | 'giant';
 
 export class Settings {
-  // User configurable
+  // User configurable - NEW DEFAULTS
   beybladeCount: number = 5;
   soundEnabled: boolean = true;
-  battleDuration: BattleDuration = 'normal';
-  beybladeSize: BeybladeSize = 'normal';
+  battleDuration: BattleDuration = 'endless';  // Changed from 'normal'
+  beybladeSize: BeybladeSize = 'large';        // Changed from 'normal'
   customImages: string[] = [];
   
   // Spin settings
@@ -18,9 +18,9 @@ export class Settings {
   get spinDecay(): number {
     switch (this.battleDuration) {
       case 'quick': return 0.9985;
-      case 'normal': return 0.9993;     // Slightly faster decay so battles end
+      case 'normal': return 0.9993;
       case 'extended': return 0.9997;
-      case 'endless': return 0.99995;
+      case 'endless': return 0.9999;
     }
   }
   
@@ -45,12 +45,12 @@ export class Settings {
   
   // Collision effects
   readonly knockbackMultiplier: number = 1.8;
-  readonly spinTransferRate: number = 0.06;   // More spin drain per hit (was 0.02)
-  readonly collisionSpinDrain: number = 0.02; // NEW: flat spin drain on every hit
+  readonly spinTransferRate: number = 0.06;
+  readonly collisionSpinDrain: number = 0.02;
   
   // Special events
   readonly criticalHitChance: number = 0.10;
-  readonly burstChance: number = 0.02;        // Slightly higher burst chance
+  readonly burstChance: number = 0.02;
   readonly staminaSurgeChance: number = 0.08;
   
   // Arena
@@ -62,6 +62,10 @@ export class Settings {
   
   // Performance
   readonly maxBeyblades: number = 12;
+  
+  // Custom image limits
+  readonly maxCustomImageSize: number = 500000;  // 500KB
+  readonly maxCustomImages: number = 20;
 
   constructor() {
     this.loadSettings();
@@ -98,7 +102,7 @@ export class Settings {
   }
   
   addCustomImage(base64: string): void {
-    if (this.customImages.length < 20) {
+    if (this.customImages.length < this.maxCustomImages) {
       this.customImages.push(base64);
       this.saveSettings();
     }
