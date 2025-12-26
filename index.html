@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyblade Arena</title>
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+    <canvas id="arena"></canvas>
+    <div id="ui-overlay">
+      <div id="winner-banner" class="hidden">
+        <span class="winner-text"></span>
+        <button id="restart-btn">Battle Again!</button>
+      </div>
+      <div id="controls">
+        <button id="launch-btn" title="Launch Battle (Space)">⚔️ LET IT RIP!</button>
+        <button id="settings-btn" title="Settings">⚙️</button>
+        <button id="exit-btn" title="Exit (Escape)">✕</button>
+      </div>
+    </div>
+    <div id="settings-modal" class="hidden">
+      <div class="modal-content">
+        <h2>⚙️ Settings</h2>
+        
+        <div class="settings-section">
+          <h3>Battle</h3>
+          
+          <div class="setting-row">
+            <label for="beyblade-count">Beyblade Count:</label>
+            <input type="range" id="beyblade-count" min="2" max="12" value="5" />
+            <span id="count-display">5</span>
+          </div>
+          
+          <div class="setting-row">
+            <label for="battle-duration">Battle Duration:</label>
+            <select id="battle-duration">
+              <option value="quick">Quick (~15s)</option>
+              <option value="normal" selected>Normal (~30s)</option>
+              <option value="extended">Extended (~60s)</option>
+              <option value="endless">Endless</option>
+            </select>
+          </div>
+          
+          <div class="setting-row">
+            <label for="beyblade-size">Beyblade Size:</label>
+            <select id="beyblade-size">
+              <option value="small">Small</option>
+              <option value="normal" selected>Normal</option>
+              <option value="large">Large</option>
+              <option value="giant">Giant</option>
+            </select>
+          </div>
+          
+          <div class="setting-row">
+            <label for="sound-toggle">Sound Effects:</label>
+            <input type="checkbox" id="sound-toggle" checked />
+          </div>
+        </div>
+        
+        <div class="settings-section">
+          <h3>Custom Beyblades</h3>
+          <p class="hint">Add your own beyblade images (PNG with transparent background works best)</p>
+          
+          <div class="custom-images-container">
+            <div id="custom-images-grid"></div>
+            <label class="add-image-btn" for="image-upload">
+              <span>+ Add Image</span>
+              <input type="file" id="image-upload" accept="image/*" multiple hidden />
+            </label>
+          </div>
+          
+          <button id="clear-custom-btn" class="danger-btn">Clear All Custom Images</button>
+        </div>
+        
+        <button id="close-settings">Close</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
